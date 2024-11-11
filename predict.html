@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Payment Fraud Detection</h1>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="card">
+        <h2>Predict Fraudulent Transactions</h2>
+        <form id="fraudForm">
+            <label for="accountAgeDays">Account Age (Days):</label>
+            <input type="number" id="accountAgeDays" name="accountAgeDays" required>
+
+            <label for="numItems">Number of Items:</label>
+            <input type="number" id="numItems" name="numItems" required>
+
+            <label for="paymentMethodAgeDays">Payment Method Age (Days):</label>
+            <input type="number" id="paymentMethodAgeDays" name="paymentMethodAgeDays" required>
+
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="creditcard">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="storecredit">Store Credit</option>
+            </select>
+
+            <button type="button" onclick="predictFraud()">Predict Fraud</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function computeLocalTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const totalMinutes = (hours * 60) + minutes;
+            return totalMinutes / (24 * 60);
+        }
+
+        async function predictFraud() {
+            const data = {
+                accountAgeDays: parseInt(document.getElementById('accountAgeDays').value),
+                numItems: parseInt(document.getElementById('numItems').value),
+                localTime: computeLocalTime(),
+                paymentMethodAgeDays: parseInt(document.getElementById('paymentMethodAgeDays').value),
+                paymentMethod: document.getElementById('paymentMethod').value
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('result');
+                resultDiv.style.display = 'block';
+                resultDiv.innerText = `Fraud Prediction Result: ${result.result === 1 ? 'Fraud Detected' : 'No Fraud Detected'}`;
+                resultDiv.style.backgroundColor = result.result === 1 ? '#ff4d4d' : '#4CAF50';
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'Error making prediction. Check console for details.';
+            }
+        }
+    </script>
+</body>
+</html>

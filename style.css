@@ -1,0 +1,160 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f9fc; /* Soft Light Gray */
+    color: #333; /* Dark Gray for text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 15px 50px;
+    background-color: #4e73df; /* Medium Blue */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #142141; /* Darker Blue Border */
+}
+
+.navbar h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #2d53a5; /* Darker Blue */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar nav a:hover {
+    background-color: #1c3d8c; /* Even Darker Blue on Hover */
+}
+
+/* Hero Section */
+.hero-section {
+    height: 91.8vh;
+    width: 100%;
+    background: linear-gradient(135deg, #6c8ee2, #4056a1); /* Soft Gradient from Light to Dark Blue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.hero-button {
+    padding: 12px 28px;
+    background-color: #f1f6ff; /* Very Light Blue */
+    color: #2c3e50; /* Dark Gray */
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #d1e0f1; /* Light Blue on Hover */
+}
+
+/* Card Styles */
+.card {
+    background-color: #fff;
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+    border: 1px solid #ddd; /* Light Gray Border */
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    color: #3e5c76; /* Subtle Blue */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    text-align: left;
+    color: #2c3e50; /* Dark Gray */
+}
+
+input, select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    padding: 12px;
+    background-color: #4e73df; /* Medium Blue */
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2c53a5; /* Darker Blue on Hover */
+}
+
+/* Result Display */
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    display: none;
+    text-align: center;
+}
+
+/* Result Colors */
+#result[data-result="1"] {
+    background-color: #e74c3c; /* Red for Fraud Detected */
+}
+
+#result[data-result="0"] {
+    background-color: #27ae60; /* Green for No Fraud Detected */
+}
